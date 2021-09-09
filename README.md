@@ -1,4 +1,4 @@
-# Sberbank_autotest
-Java+JUnit+Allure+Cucumber
+# Selenium_course
+Java+JUnit+Allure
 
 Command to start autotest: clean -Denvironment=environment install
