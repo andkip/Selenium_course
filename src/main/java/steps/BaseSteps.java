@@ -1,7 +1,8 @@
 package steps;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class BaseSteps {
     }
 
     @Before
-    public static void setUp() throws Exception {
+    public void setUp() {
         switch (properties.getProperty("browser")){
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", properties.getProperty("webdriver.gecko.driver"));
@@ -45,15 +46,14 @@ public class BaseSteps {
         driver.get(baseUrl);
     }
 
-    @After
-    public static void tearDown() throws Exception {
-        driver.quit();
+    @AfterClass
+    public static void afterMethod(){
+        driver .quit();
     }
 
     @Attachment(type = "image/png", value = "Screenshot")
     public static byte[] takeScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
-
 
 }

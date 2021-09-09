@@ -3,6 +3,9 @@ package steps;
 import org.openqa.selenium.By;
 import pages.TravelInsuranceSendForm;
 import ru.yandex.qatools.allure.annotations.Step;
+
+import java.util.HashMap;
+
 import static org.junit.Assert.assertTrue;
 
 public class TravelInsuranceSendFormSteps {
@@ -44,6 +47,14 @@ public class TravelInsuranceSendFormSteps {
     @Step("выбран пол {0}")
     public void selectGender(String sex) {
         new TravelInsuranceSendForm().gender.findElement(By.xpath("//label[contains(text(),'" + sex + "')]")).click();
+    }
+    @Step("заполняются поля")
+    public void fillFields(HashMap<String, String> fields){
+        fields.forEach((k, v)-> fillField(k,v));}
+
+    @Step("поля заполнены верно")
+    public void checkFillFields(HashMap<String, String> fields){
+        fields.forEach((k, v)-> checkFillField(k,v));
     }
 
 }
